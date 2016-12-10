@@ -2,17 +2,18 @@
 #
 # Perform SyN warping from individual to template space using T1 cost function
 #
-# USAGE  : ind2tmp_T1 -t1i <individual T1> -t1t <template T1>
+# USAGE  : ind2tmp_T1 -t1i <individual T1> -t1t <template T1> -pt <prob atlas>
 #
 # AUTHOR : Mike Tyszka
 # PLACE  : Caltech
 # DATES  : 2016-09-30 JMT From scratch
+#          2016-12-09 JMT Adapt joint warp for T1-only warping
 
-if [ $# -lt 4 ]
+if [ $# -lt 2 ]
 then
 	echo ""
 	echo "Usage:"
-	echo "  ind2tmp_T1T2.sh -t1i <img> -t2i <img> -t1t <img> -t2t <img>"
+	echo "  ind2tmp_T1T2.sh -t1i <img> -t1t <img> -pt <img>"
 	echo ""
 	echo "Arguments:"
 	echo "  -t1i : Individual T1w image (3D)"
