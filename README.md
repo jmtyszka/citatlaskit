@@ -9,9 +9,9 @@ These bash scripts wrap ANTs and FSL commands and provide a convenient starting 
 
 | Software | Description | Version | Link |
 | :------- | :---------- | :------ | :--- |
-| FSL      | Neuroimaging analysis | https://fsl.fmrib.ox.ac.uk |
-| ANTs     | Image warp registration | https://github.com/stnava/ANTs |
-| CIT168   | Templates and amygdala atlas | http://evendim.caltech.edu/amygdala-atlas/ |
+| FSL      | Neuroimaging analysis | 5.0.8+ | https://fsl.fmrib.ox.ac.uk |
+| ANTs     | Image warp registration | 2+ | https://github.com/stnava/ANTs |
+| CIT168   | Templates and amygdala atlas | 1.0.1+ | http://evendim.caltech.edu/amygdala-atlas/ |
 
 ## Registering the CIT168 atlas to individual T1w structural images
 The acquisition of both high resolution T1w and T2w structural images has become routine, but many legacy datasets include only 1 mm isotropic T1w structural images. Use the tmp2ind_T1.sh script to register the CIT168 atlas into the individual T1w space.
