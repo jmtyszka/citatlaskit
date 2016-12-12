@@ -9,8 +9,8 @@ These bash scripts wrap ANTs and FSL commands and provide a convenient starting 
 
 | Software | Description | Version | Link |
 | :------- | :---------- | :------ | :--- |
-| FSL      | Neuroimaging analysis | 5.0.8+ | https://fsl.fmrib.ox.ac.uk |
-| ANTs     | Image warp registration | 2+ | https://github.com/stnava/ANTs |
+| FSL      | Neuroimaging analysis | 5.0.9+ | https://fsl.fmrib.ox.ac.uk |
+| ANTs     | Image warp registration | 2.1.0+ | https://github.com/stnava/ANTs |
 | CIT168   | Templates and amygdala atlas | 1.0.1+ | http://evendim.caltech.edu/amygdala-atlas/ |
 
 ## Registering the CIT168 atlas to individual T1w structural images
