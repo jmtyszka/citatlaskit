@@ -10,7 +10,7 @@
 #      so that T1w and T2w pairs for an individual appear adjacent to each other
 #      in the output of the ls command.
 #    - T1w and T2w image pairs are assumed to be already accurately coregistered to each other
-# 2. Copy this script to the image directory, make sure its executable and run it in place.
+# 2. Copy this script to the image directory, make sure it's executable and run it in place.
 #
 # OUTPUT:
 #

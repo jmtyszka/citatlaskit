@@ -6,7 +6,7 @@
 # SETUP:
 #
 # 1. Place all T1w .nii.gz images in a single directory.
-# 2. Copy this script to the image directory, make sure its executable and run it in place.
+# 2. Copy this script to the image directory, make sure it's executable and run it in place.
 #
 # OUTPUT:
 #
