@@ -13,8 +13,10 @@ These bash scripts wrap ANTs and FSL commands and provide a convenient starting 
 | ANTs     | Image warp registration | 2.1.0+ | https://github.com/stnava/ANTs |
 | CIT168   | Templates and amygdala atlas | 1.0.1+ | http://evendim.caltech.edu/amygdala-atlas/ |
 
-## Registering the CIT168 atlas to individual T1w structural images
-The acquisition of both high resolution T1w and T2w structural images has become routine, but many legacy datasets include only 1 mm isotropic T1w structural images. Use the tmp2ind_T1.sh script to register the CIT168 atlas into the individual T1w space.
+## Registering the CIT168 atlas to an individual brain
+The CIT168 atlas provides both a T1w and T2w template. Both are accurately registerd to each other (ie they're in the same space) so you can register the atlas to just an individual T1w image or to a similar pair of T1w and T2w images from an individual. If you only have T1w 3D structural images, use the tmp2ind_T1.sh script. If you have both T1w and T2w 3D structural images for an individual participant, use the tmp2ind_T1T2.sh script which makes use of both contrasts during the registration.
 
-## Registering the CIT168 atlas to individual T1w and T2w image pairs
-The CIT168 atlas supplies a T1w and T2w template pair which are in the same space. If you have both T1w and T2w 3D structural images for individual patients or participants, information from both contrasts can be used to determine an optimal mapping from template to individual spaces. Use the tmp2ind_T1T2.sh script to register the CIT168 atlas to individual space using both T1w and T2w information (joint cost function).
+## Creating a midspace template form your own data
+We've included a pair of scripts for convenience that simply wrap the antsMultivariateTemplateConstruction.sh command. midspace_T1.sh constructs a minimum deformation midspace template from a set of T1w individual images only, and midspace_T1T2.sh constructs a T1w and T2w template pair from accurately registered T1w and T2w individual images.
+
+
