@@ -34,3 +34,7 @@ To run either script:
 3. Copy the required script to the image directory. Make sure it is executable using chmod +x *.sh and run from the image directory.
 
 Template generation could take from several hours to several days depending on the number of individual images, image dimensions and computing resources available.
+
+## Bugs, Issues, Feature Requests
+
+If you encounter any problems using these scripts or the CIT168 atlas, let us know by raising a new issue for this repository through https://github.com/jmtyszka/citatlaskit/issues
