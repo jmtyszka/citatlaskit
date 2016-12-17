@@ -33,4 +33,4 @@ To run either script:
 
 3. Copy the required script to the image directory. Make sure it is executable using chmod +x *.sh and run from the image directory.
 
-Template generation could take from several hours to several days depending on the number of individual images, image dimensions, computing resources available.
+Template generation could take from several hours to several days depending on the number of individual images, image dimensions and computing resources available.
