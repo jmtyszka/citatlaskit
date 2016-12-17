@@ -2,7 +2,7 @@
 #
 # Perform SyN warping from individual to template space using T1 cost function
 #
-# USAGE  : ind2tmp_T1 -t1i <individual T1> -t1t <template T1> -pt <prob atlas>
+# USAGE  : tmp2ind -t1i <individual T1> -t1t <template T1> -pt <prob atlas>
 #
 # AUTHOR : Mike Tyszka
 # PLACE  : Caltech

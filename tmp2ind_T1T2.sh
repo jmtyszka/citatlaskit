@@ -2,7 +2,7 @@
 #
 # Perform SyN multimodal warping from individual to template space using joint T1 and T2 cost function
 #
-# USAGE  : ind2tmp_T1T2 -t1i <individual T1> -t2i <individual T2> -t1t <template T1> -t2t <template T2> -pt <prob atlas>
+# USAGE  : tmp2ind_T1T2 -t1i <individual T1> -t2i <individual T2> -t1t <template T1> -t2t <template T2> -pt <prob atlas>
 #
 # AUTHOR : Mike Tyszka
 # PLACE  : Caltech
