@@ -8,6 +8,7 @@
 # PLACE  : Caltech
 # DATES  : 2016-09-30 JMT From scratch
 #          2016-12-09 JMT Adapt joint warp for T1-only warping
+#          2017-04-10 JMT Fixed dimensions bug in pAtlas resampling
 #
 # MIT License
 #
@@ -110,7 +111,7 @@ fi
 # Resample probabilistic atlas to individual space
 if [ -s ${pAtmp2ind} ]
 then
-	WarpImageMultiTransform	3 ${pAtmp} ${pAtmp2ind} -R ${T1ind} $(tmp2ind_warp) ${tmp2ind_affine} --use-BSpline
+	WarpImageMultiTransform	4 ${pAtmp} ${pAtmp2ind} -R ${T1ind} $(tmp2ind_warp) ${tmp2ind_affine} --use-BSpline
 fi
 
 # Report output filenames
