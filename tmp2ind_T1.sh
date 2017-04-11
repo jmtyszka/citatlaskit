@@ -4,11 +4,12 @@
 #
 # USAGE  : tmp2ind -t1i <individual T1> -t1t <template T1> -pt <prob atlas>
 #
-# AUTHOR : Mike Tyszka
-# PLACE  : Caltech
-# DATES  : 2016-09-30 JMT From scratch
-#          2016-12-09 JMT Adapt joint warp for T1-only warping
-#          2017-04-10 JMT Fixed dimensions bug in pAtlas resampling
+# AUTHORS : Mike Tyszka and Adam Mezher
+# PLACE   : Caltech
+# DATES   : 2016-09-30 JMT From scratch
+#           2016-12-09 JMT Adapt joint warp for T1-only warping
+#           2017-04-10 JMT Fixed dimensions bug in pAtlas resampling
+#           2017-04-11 AM  Fixed filenames, logic, syntax
 #
 # MIT License
 #
@@ -88,8 +89,8 @@ nthreads=4
 
 # Registration files
 prefix=TMP2IND_
-tmp2ind_affine=${prefix}0GenericAffine.txt
-tmp2ind_warp=${prefix}1Warp.txt
+tmp2ind_affine=${prefix}0GenericAffine.mat
+tmp2ind_warp=${prefix}1Warp.nii.gz
 logfile=${prefix}Warp.log
 
 # Output filenames
@@ -97,21 +98,21 @@ T1tmp2ind=T1w_tmp2ind.nii.gz
 pAtmp2ind=pA_tmp2ind.nii.gz
 
 # Calculate affine and SyN warp
-if [ -s ${tmp2ind_warp} ]
+if [ ! -s ${tmp2ind_warp} ]
 then
 	antsRegistrationSyN.sh -d 3 -n ${nthreads} -t b -o ${prefix} -f ${T1ind} -m ${T1tmp} 2>&1 > ${logfile}
 fi
 
 # Rename warped template T1
-if [ -s ${T1tmp2ind} ]
+if [ ! -s ${T1tmp2ind} ]
 then
 	mv ${prefix}_Warped.nii.gz ${T1tmp2ind}
 fi
 
 # Resample probabilistic atlas to individual space
-if [ -s ${pAtmp2ind} ]
+if [ ! -s ${pAtmp2ind} ]
 then
-	WarpImageMultiTransform	4 ${pAtmp} ${pAtmp2ind} -R ${T1ind} $(tmp2ind_warp) ${tmp2ind_affine} --use-BSpline
+	WarpImageMultiTransform	4 ${pAtmp} ${pAtmp2ind} -R ${T1ind} ${tmp2ind_warp} ${tmp2ind_affine} --use-BSpline
 fi
 
 # Report output filenames
