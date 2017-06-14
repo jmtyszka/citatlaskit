@@ -2,17 +2,18 @@
 #
 # Perform SyN multimodal warping from individual to template space using joint T1 and T2 cost function
 #
-# USAGE  : tmp2ind_T1T2 -t1i <individual T1> -t2i <individual T2> -t1t <template T1> -t2t <template T2> -pt <prob atlas>
+# USAGE  : tmp2ind_T1T2.sh <Individual T1w> <Individual T2w> <Template T1w image> <Template T2w image> <Prob atlas>"
 #
 # AUTHOR : Mike Tyszka
 # PLACE  : Caltech
 # DATES  : 2016-09-30 JMT From scratch
 #          2017-04-10 JMT Fixed dimensions bug in pAtlas resampling
 #          2017-04-11 JMT Duplicated Adam Meher's fixes from T1 to T1T2 version
+#          2017-06-13 JMT Simplied argument handling
 #
 # MIT License
 #
-# Copyright (c) 2016 Mike Tyszka
+# Copyright (c) 2017 Mike Tyszka
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -32,57 +33,43 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-if [ $# -lt 4 ]
+if [ $# -lt 5 ]
 then
-	echo ""
-	echo "Usage:"
-	echo "  ind2tmp_T1T2.sh -t1i <img> -t2i <img> -t1t <img> -t2t <img>"
-	echo ""
-	echo "Arguments:"
-	echo "  -t1i : Individual T1w image (3D)"
-	echo "  -t2i : Individual T2w image (3D)"
-	echo "  -t1t : Template T1w image (3D)"
-	echo "  -t2t : Template T2w image (3D)"
-	echo "  -pt  : Template probabilistic atlas (4D)"
-	echo ""
+	echo "USAGE : tmp2ind_T1T2.sh <Individual T1w> <Individual T2w> <Template T1w image> <Template T2w image> <Probabilistic atlas>"
 	echo "All images are Nifti-1 format, compressed or uncompressed"
-
 	exit
 fi
 
-while [[ $# -gt 1 ]]
-do
-	key="$1"
 
-	case $key in
-		-t1i)
-			T1ind="$2"
-			shift
-			;;
-		-t2i)
-			T2ind="$2"
-			shift
-			;;
-		-t1t)
-			T1tmp="$2"
-			shift
-			;;
-		-t2t)
-			T2tmp="$2"
-			shift
-			;;
-		-pt)
-			pAtmp="$2"
-			shift
-			;;
-		*)
-			# Unknown option
-			;;
-	esac
+T1ind=$1
+if [ ! -s $T1ind ]; then
+    echo "* $T1ind does not exist or is empty"
+    exit
+fi
 
-	shift # past argument or value
+T2ind=$2
+if [ ! -s $T2ind ]; then
+    echo "* $T2ind does not exist or is empty"
+    exit
+fi
 
-done
+T1tmp=$3
+if [ ! -s $T1tmp ]; then
+    echo "* $T1tmp does not exist or is empty"
+    exit
+fi
+
+T2tmp=$4
+if [ ! -s $T2tmp ]; then
+    echo "* $T2tmp does not exist or is empty"
+    exit
+fi
+
+pAtmp=$5
+if [ ! -s $pAtmp ]; then
+    echo "* $pAtmp does not exist or is empty"
+    exit
+fi
 
 # Splash text
 echo "------------------------------------------------------------"
@@ -111,6 +98,7 @@ pAtmp2ind=pA_tmp2ind.nii.gz
 # Calculate affine and SyN warp
 if [ ! -s ${tmp2ind_warp} ]
 then
+    echo "Starting SyN registration"
 	antsRegistrationSyN.sh -d 3 -n ${nthreads} -t b -o ${prefix} -f ${T1ind} -f ${T2ind} -m ${T1tmp} -m ${T2tmp} 2>&1 > ${logfile}
 fi
 
@@ -123,12 +111,14 @@ fi
 # Resample template T2 to individual space
 if [ ! -s ${T2tmp2ind} ]
 then
+    echo "Warping T2w template into individual space"
 	WarpImageMultiTransform	3 ${T2tmp} ${T2tmp2ind} -R ${T1ind} ${tmp2ind_warp} ${tmp2ind_affine} --use-BSpline
 fi
 
 # Resample probabilistic atlas to individual space
 if [ ! -s ${pAtmp2ind} ]
 then
+    echo "Warping probabilistic atlas into individual space"
 	WarpImageMultiTransform	4 ${pAtmp} ${pAtmp2ind} -R ${T1ind} ${tmp2ind_warp} ${tmp2ind_affine} --use-BSpline
 fi
 
