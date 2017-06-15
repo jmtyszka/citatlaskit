@@ -117,7 +117,7 @@ fi
 # Rename warped template T1
 if [ ! -s ${T1tmp2ind} ]
 then
-	mv ${prefix}_Warped.nii.gz ${T1tmp2ind}
+	mv ${prefix}Warped.nii.gz ${T1tmp2ind}
 fi
 
 # Resample template T2 to individual space
