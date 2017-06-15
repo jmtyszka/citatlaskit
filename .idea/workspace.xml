@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="00a14ddd-95ae-4df0-bff7-6c51f00a78f2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmp2ind_T1.sh" afterPath="$PROJECT_DIR$/tmp2ind_T1.sh" />
     </list>
     <ignored path=".idea/citatlaskit.iml" />
     <ignored path=".idea/misc.xml" />
@@ -431,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1497547291903</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fixed renaming of warped template T1 (removed additional underscore).">
+      <created>1497547491383</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1497547491383</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
